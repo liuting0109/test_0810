@@ -74,7 +74,9 @@ public class ttest {
         int base = arr[left];
         int i = left;
         int j = right;
-        while (i < j){
+
+
+        while (i < j) {
             while (arr[j] >= base && i < j){
                 j--;
             }

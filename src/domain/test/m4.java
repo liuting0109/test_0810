@@ -1,7 +1,7 @@
 package domain.test;
 
 import java.util.Scanner;
-
+//给出n个点分别到a, b的花费, 如何调度花费最小, 三维dp,
 public class m4 {
     public static void main(String[] args) {
         Scanner sc= new Scanner(System.in);

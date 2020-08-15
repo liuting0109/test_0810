@@ -2,7 +2,11 @@ package domain.test;
 
 import java.util.Scanner;
 
-public class m2 {
+/**求旅行次数 beijing到beijing算一次 fuzhou到fuzhou算一次 共计2次
+ * ac 100% ； package 不要导入答题框内
+ * 字符串判断是否相等 用equals， not == !!!
+ */
+public class MeiTuan2 {
     //static int count  = 0;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);

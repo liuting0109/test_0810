@@ -2,7 +2,8 @@ package domain.test;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
+//外卖小区
+// 用hashmap stack做
 public class m3 {
     static int count = 0;
     static ArrayList<ArrayList<Integer>> res = new ArrayList<>();

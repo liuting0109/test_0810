@@ -1,9 +1,12 @@
 package domain.test;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
-public class g2 {
+/***
+ * 大疆“hello undo redo world”； 输出“hello world”
+ * undo 撤销前一个输入；redo 重新键入
+ */
+public class DaJiang2 {
     public static void main(String[] args) {
         //String s = "hello undo redo world";
         Scanner sc = new Scanner(System.in);

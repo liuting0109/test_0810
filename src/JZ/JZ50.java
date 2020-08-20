@@ -14,6 +14,27 @@ public class JZ50 {
         System.out.println(duplicate(array, 9, duplication));
     }
 
+    /*  bingo！！！！！！！
+        0   1   2   3   4位置
+        2,  1,  3,  1,  4
+        2,  1, -3,  1,  4第一轮把num[abs(0)] = 2的位置变为 负数
+        2, -1, -3,  1,  4第二轮把num[abs(1)] = 1的位置变为 负数
+        2, -1, -3, -1,  4第三轮把num[abs(2)] = 3的位置变为 负数
+        2,  1, -3, -1,  4第四轮把num[abs(3)] = 1的位置变为 负数；由于第二轮1的位置已经是负数了，所以是重复的数
+     */
+    public static boolean duplicate3(int numbers[],int length,int [] duplication) {
+        if (length <= 1)
+            return false;
+        for (int i = 0; i < numbers.length; i++) {
+            if (numbers[Math.abs(numbers[i])] < 0){
+                duplication[0] = numbers[i];
+                return true;
+            }
+            numbers[Math.abs(numbers[i])] = -numbers[Math.abs(numbers[i])];
+        }
+        return false;
+    }
+
     /*
     ，题目里写了数组里数字的范围保证在0 ~ n-1 之间，
     所以可以利用现有数组设置标志，当一个数字被访问过后，

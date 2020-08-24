@@ -1,7 +1,10 @@
 package domain.test;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
+
 /*
 在一张透明的纸上，用笔写下一个字符串。
 然后将纸翻面，请你判断正面和背面看到的字符串是否一样。
@@ -27,7 +30,7 @@ HHA在背面看过去为AHH
  */
 public class T360_2 {
     public static void main(String[] args) {
-        Scanner sc= new Scanner(System.in);
+        /*Scanner sc= new Scanner(System.in);
         String[] str = new String[20];
         int index = 0;
         while (sc.hasNext()){
@@ -37,12 +40,40 @@ public class T360_2 {
         //System.out.println(res.size());
         for (String s: res){
             System.out.println(s);
-        }
+        }*/
+        solution();
         /*String[] strings = {
                 "ABA","AHA","HHA"
         };
         //System.out.println(help(strings[0]));
         System.out.println(fun(strings));*/
+    }
+    //方法2
+    public static void solution(){
+        Set<Character> set = new HashSet<>();
+        char[] chars = {'A','H','I','M','O','T','U','V','M','X'};
+        for (char c:chars){
+            set.add(c);
+        }
+        int left = 0, right = 0;
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNext()){
+            String s = sc.nextLine();
+            left =0;
+            right = s.length() - 1;
+            while (left <= right){
+                if (s.charAt(left) == s.charAt(right) && set.contains(s.charAt(left))){
+                    left ++;
+                    right --;
+                }else {
+                    break;
+                }
+            }
+            if (left > right)
+                System.out.println("YES");
+            else
+                System.out.println("NO");
+        }
     }
 
     private static ArrayList<String> fun(String[] str) {
@@ -63,6 +94,10 @@ public class T360_2 {
     }
 
     public static boolean help(String str){
+        //用这个判断亦可
+        String ss = "AHIMOTUVWXY";
+        ss.contains("a");
+
         ArrayList<Character> sym = new ArrayList<>();//对称字母
         sym.add('A');
         sym.add('H');

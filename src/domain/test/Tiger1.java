@@ -29,24 +29,21 @@ public class Tiger1 {
             p2 = p1.next;
         }
 
-        /*while (p2 != null && p2.next !=null){
-            p1.next = p2.next;
-            p2.next = p1.next.next;
-            p1.next.next = p2;
-            p1 = p2;
-            p2 = p2.next;
-        }*/
-        /*ListNode h = head;
-        int count = 1;
-        while (h !=null){
-            if (count  %2 == 1){
-
-                count++;
-            }else {
-                count++:
-            }
-            h = h.next;
-        }*/
         return res.next;
+    }
+
+    //正解
+    public ListNode lineUp1 (ListNode head) {
+        ListNode p = head, q = head.next, second = q;
+        while (p != null && q != null){
+            p.next = q.next;
+            p = p.next;
+            q.next = p.next;
+            q = q.next;
+            if (q == null || q.next == null)
+                break;
+        }
+        p.next = second;
+        return head;
     }
 }

@@ -4,7 +4,17 @@ import java.util.Scanner;
 
 public class Didi2 {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        String s1 = "abc";
+        String s2 = new String("abc");
+        String s3 = new String("abc");
+        String s4 = "abc";
+        System.out.println(s1.hashCode());
+        System.out.println(s2.hashCode());
+        System.out.println(s1 == s2);//f
+        System.out.println(s2 == s3);//f
+        System.out.println(s1 == s4);//t
+
+        /*Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         long[][] res = fun(n);
         for (int i = 0; i < n; i++) {
@@ -12,7 +22,7 @@ public class Didi2 {
                 System.out.print(res[i][j]+ " ");
             }
             System.out.println();
-        }
+        }*/
     }
     public static long[][] fun(int n){
         long[][] res = new long[n][n];

@@ -31,7 +31,6 @@ public class JZ18 {
             }
         }
     }
-
     public void Mirror3(TreeNode root) {//非递归,用栈
         if (root == null)
             return;

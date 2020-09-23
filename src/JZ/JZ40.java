@@ -26,7 +26,15 @@ public class JZ40 {
     然后把这两个组按照最开始的思路，依次异或，
     剩余的两个结果就是这两个只出现一次的数字。
      */
-    public class Solution {
+
+        //只有一个数字出现了一次
+        public int singleNumber(int[] nums) {
+            int once = 0;
+            for (int i = 0; i < nums.length; i++) {
+                once = once ^ nums[i];
+            }
+            return once;
+        }
 
         public void FindNumsAppearOnce1(int [] array,int num1[] , int num2[]) {
             int len = array.length;
@@ -63,6 +71,7 @@ public class JZ40 {
             return index;
         }
 
+        //方法二
         public void FindNumsAppearOnce(int [] array,int num1[] , int num2[]) {
             HashMap<Integer, Integer> map = new HashMap<>();
             for (int i = 0; i < array.length; i++) {
@@ -83,4 +92,4 @@ public class JZ40 {
             }
         }
     }
-}
+

@@ -19,19 +19,16 @@ public class JZ55 {
         while (fast != null && fast.next != null){
             fast = fast.next.next;
             slow = slow.next;
-            if (fast == slow)
-                break;
+            if (fast == slow){
+                slow = pHead;
+                while (fast != slow){
+                    fast = fast.next;
+                    slow = slow.next;
+                }
+                return fast;
+            }
         }
-
-        if (fast == null || fast.next == null)
-            return null;
-
-        slow = pHead;
-        while (fast != slow){
-            fast = fast.next;
-            slow = slow.next;
-        }
-        return fast;
+        return null;
     }
 
     public ListNode EntryNodeOfLoop1(ListNode pHead) {

@@ -2,6 +2,7 @@ package JZ;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Queue;
 
 /*
@@ -26,14 +27,43 @@ public class JZ64 {
      1.判断当前最大值是否过期
      2.新增加的值从队尾开始比较，把所有比他小的值丢掉
      */
+    //https://blog.csdn.net/u010429424/article/details/73692248
+    public ArrayList<Integer> maxInWindows3(int [] num, int size){
+        ArrayList<Integer> result = new ArrayList<>();
+        if (num == null || num.length == 0 || size == 0 || size > num.length){
+            return result;
+        }
+        LinkedList<Integer> queue = new LinkedList<>();
+
+        for (int i = 0; i < num.length; i++) {
+            if (!queue.isEmpty()){
+                if (i >= queue.peek() + size){// 如果队列头元素不在滑动窗口中了，就删除头元素
+                    queue.pop();
+                }
+                // 如果当前数字大于队列尾，则删除队列尾，直到当前数字小于等于队列尾，或者队列空
+                while ( !queue.isEmpty() && num[i] >= num[queue.getLast()]){
+                    queue.removeLast();
+                }
+            }
+            queue.offer(i); // 入队列
+            if (i + 1 >= size){// 滑动窗口经过三个元素，获取当前的最大值，也就是队列的头元素
+                result.add(queue.peek());
+            }
+        }
+        return result;
+    }
+
+
     public ArrayList<Integer> maxInWindows2(int [] num, int size)
     {
+        //思路时=是，一个双向链表存储小标，当当前元素比下标小时，入队列，大时，遍历队列，比该元素小时就舍弃，然后入队列
+        //begin记录滑动窗口左边
         ArrayList<Integer> res = new ArrayList<>();
         if(size == 0) return res;
         int begin;
         ArrayDeque<Integer> q = new ArrayDeque<>();
         for(int i = 0; i < num.length; i++){
-            begin = i - size + 1;
+            begin = i - size + 1;//代表滑动窗口的起点
             if(q.isEmpty())
                 q.add(i);
             else if(begin > q.peekFirst())

@@ -14,7 +14,6 @@ public class JZ39 {
     public boolean IsBalanced_Solution1(TreeNode root) {
         return depth1(root) != -1;
     }
-
     public int depth1(TreeNode root){
         if (root == null)
             return 0;

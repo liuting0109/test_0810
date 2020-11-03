@@ -34,12 +34,46 @@ Y
 输出：
 N
  */
+    //https://www.bilibili.com/video/BV13t411v7Fs?p=2
+    //并查集解决
 public class blf1 {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        /*Scanner sc = new Scanner(System.in);
         String str = sc.next();
-        System.out.println(fun(str));
+        System.out.println(fun(str));*/
+        int[][] edges = {{1,2},{2,3},{3,4},{4,1}};
+        int[] parent = new int[edges.length + 2];
+        Arrays.fill(parent, - 1);
+        for (int i = 0; i < edges.length; i++) {
+            int x = edges[i][0];
+            int y = edges[i][1];
+            if (merge(x, y, parent) == 0){
+                System.out.println("有环");
+            }else {
+                //System.out.println("无环");
+            }
+        }
     }
+    public static int find_root(int x, int parent[]){//找父节点
+        int xroot = x;
+        while (parent[xroot] != -1){
+            xroot = parent[xroot];
+        }
+        return xroot;
+    }
+    //1表示连接成功，0表示失败
+    public static int merge(int x, int y, int parent[]){
+        int xroot = find_root(x, parent);
+        int yroot = find_root(y, parent);
+        if (xroot == yroot)
+            return 0;
+        else {
+            parent[xroot] = yroot;
+            return 1;
+        }
+    }
+
+
     public static String fun(String str){
         HashMap<Character, Integer> map = new HashMap<>();
         for (int i = 0; i < str.length(); i++) {

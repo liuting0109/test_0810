@@ -86,6 +86,7 @@ public class xieCheng1 {
 
     }
 
+    //全排列
     public static void allOrder(char[] chars, int begin, int end){
         if (begin > end){
             return;
@@ -106,9 +107,4 @@ public class xieCheng1 {
         chars[begin] = temp;
     }
 
-    /*public static void backtrack(String str,int begin, int end){
-        char[] chars = str.toCharArray();
-
-
-    }*/
 }

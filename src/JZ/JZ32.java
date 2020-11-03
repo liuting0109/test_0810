@@ -12,6 +12,8 @@ public class JZ32 {
     public static void main(String[] args) {
         int[] numbers = {3,5,1,4,2};//{3,32,321};
         System.out.println(PrintMinNumber1(numbers));
+        int i = 1;
+        System.out.println((++ i) +(++ i));
     }
 
     //方法2

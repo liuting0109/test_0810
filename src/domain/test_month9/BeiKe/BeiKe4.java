@@ -1,7 +1,5 @@
 package domain.test_month9.BeiKe;
 
-import sun.misc.LRUCache;
-
 import java.util.Scanner;
 
 /**

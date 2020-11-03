@@ -1,4 +1,4 @@
-package domain.test_month9.Shence;
+package domain.test_month9.ShenCe;
 
 import java.util.Scanner;
 

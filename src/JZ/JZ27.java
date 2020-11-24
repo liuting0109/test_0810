@@ -15,7 +15,8 @@ public class JZ27 {
     public static void main(String[] args) {
         String str = "abc";
         //System.out.println(str.substring(1));
-        System.out.println(Permutation(str));
+        //System.out.println(Permutation(str));
+        System.out.println(Permutation2(str));
     }
     public static ArrayList<String> Permutation(String str) {
         StringBuffer sb = new StringBuffer(str);
@@ -47,6 +48,7 @@ public class JZ27 {
         return res;
     }
 
+    //未写完的方法
     public static ArrayList<String> Permutation1(String str) {
         ArrayList<String> res = new ArrayList<>();
         if (str == null || str.length() == 0)
@@ -61,5 +63,67 @@ public class JZ27 {
         }
 
 
+    }
+
+    //方法二 全排列
+    static HashSet<String> temp = new HashSet<>();//hashset去重
+    static ArrayList<String> res = new ArrayList<>();
+    public static ArrayList<String> Permutation2(String str) {
+        char[] chars = str.toCharArray();
+        allOrder(chars, 0 ,chars.length -  1);
+        for(String s:temp){
+            res.add(s);
+        }
+        Collections.sort(res);
+        return res;
+    }
+
+    private static HashSet<String> allOrder(char[] chars, int start, int end) {
+        if (start == end)
+            temp.add(String.valueOf(chars));
+        else {
+            for (int i = start; i <= end; i++) {
+                swap(chars, start, i);
+                allOrder(chars, start + 1, end);
+                swap(chars, start, i);
+            }
+        }
+        return temp;
+    }
+
+    public static void swap(char[] array,int i,int j) {
+        char temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+
+    //去重失败
+    class solution{
+
+        ArrayList<String> res = new ArrayList<>();
+        public ArrayList<String> Permutation(String str) {
+            char[] chars = str.toCharArray();
+            allOrder(chars, 0, chars.length - 1);
+            return res;
+        }
+
+        public void allOrder(char[]chars, int start, int end){
+            if(start == end){
+                res.add(String.valueOf(chars));
+            }else{
+                for(int i = start; i <= end; i ++){
+                    if (chars[i] != chars[start]){//这么去重不对。输入【aa】，输出【】
+                        swap(chars, i ,start);
+                        allOrder(chars, start + 1, end);
+                        swap(chars, i ,start);
+                    }
+                }
+            }
+        }
+        public void swap(char[] array,int i,int j) {
+            char temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
     }
 }

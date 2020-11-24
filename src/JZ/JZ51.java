@@ -6,6 +6,7 @@ package JZ;
 对于A长度为1的情况，B无意义，故而无法构建，因此该情况不会存在。
  */
 public class JZ51 {
+    //方法二
     public int[] multiply1(int[] A) {
         int len = A.length;
         int[] B = new int[len];
@@ -23,6 +24,7 @@ public class JZ51 {
         }
         return B;
     }
+    //方法1
     public int[] multiply(int[] A) {
         int n = A.length;
         int[] f1 = new int[n];

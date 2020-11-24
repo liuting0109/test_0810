@@ -27,4 +27,23 @@ public class JZ67 {
         }
         return dp[target];
     }
+
+    public static int cutRope1(int target){
+        int[] dp = new int[target + 1];
+        if (target == 2)
+            return 1;
+        if (target == 3)
+            return 2;
+
+        dp[1] = 1;
+        dp[2] = 2;
+        dp[3] = 3;
+        for (int i = 4; i <= target; i++) {
+            for (int k = 1; k < i /2 + 1; k++) {
+                dp[i] = Math.max(dp[k] * dp[i - k], dp[i]);
+            }
+        }
+
+        return dp[target];
+    }
 }

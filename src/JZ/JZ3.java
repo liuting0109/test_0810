@@ -31,4 +31,5 @@ public class JZ3 {
         }
         return res;
     }
+    //先翻转再打印
 }

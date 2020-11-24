@@ -38,12 +38,21 @@ public class JZ59 {
             }
             sum = temp;
 
-            if (num % 2 == 0){
+            /*if (num % 2 == 0){
                 for (int i = 0, j = list.size() - 1; i < j; i++, j--) {
                     int t = list.get(i);
                     //list.get(i) = list.get(j);
                     list.set(i , list.get(j));
                     list.set(j, t);
+                }
+            }*/
+            if (num % 2 == 0){
+                int i = 0;
+                int j = list.size() - 1;
+                while (i < j){
+                    int t = list.get(i);
+                    list.set(i++, list.get(j));
+                    list.set(j--, t);
                 }
             }
             num++;

@@ -1,9 +1,6 @@
 package JZ;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 /*
 给定一个数组和滑动窗口的大小，
@@ -19,7 +16,7 @@ import java.util.Queue;
 public class JZ64 {
     public static void main(String[] args) {
         int[] nums = {2,3,4,2,6,2,5,1};
-        ArrayList<Integer> res = maxInWindows(nums, 3);
+        ArrayList<Integer> res = maxInWindows3(nums, 3);
         System.out.println(res);
     }
     /**
@@ -28,7 +25,7 @@ public class JZ64 {
      2.新增加的值从队尾开始比较，把所有比他小的值丢掉
      */
     //https://blog.csdn.net/u010429424/article/details/73692248
-    public ArrayList<Integer> maxInWindows3(int [] num, int size){
+    public static ArrayList<Integer> maxInWindows3(int [] num, int size){
         ArrayList<Integer> result = new ArrayList<>();
         if (num == null || num.length == 0 || size == 0 || size > num.length){
             return result;
@@ -47,11 +44,13 @@ public class JZ64 {
             }
             queue.offer(i); // 入队列
             if (i + 1 >= size){// 滑动窗口经过三个元素，获取当前的最大值，也就是队列的头元素
-                result.add(queue.peek());
+                //System.out.println(queue.peek());
+                result.add(num[queue.peek()]);
             }
         }
         return result;
     }
+
 
 
     public ArrayList<Integer> maxInWindows2(int [] num, int size)
@@ -77,6 +76,7 @@ public class JZ64 {
         }
         return res;
     }
+
 
     //看不懂
     public static ArrayList<Integer> maxInWindows(int [] num, int size) {

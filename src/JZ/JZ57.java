@@ -29,7 +29,7 @@ public class JZ57 {
         inOrder(par);
         for (int i = 0; i < list.size(); i++) {
             if (pNode == list.get(i))
-                return i == list.size() - 1 ? null : list.get(i + 1);
+                return i == list.size() - 1 ? null : list.get(i + 1);//不然可以会出界或空指针异常
         }
         return null;
     }

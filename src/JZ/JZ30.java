@@ -16,7 +16,7 @@ public class JZ30 {
         int max = array[0];
         int sum = array[0];
         for (int i = 1; i < array.length; i++) {//i从1 开始
-            sum = Math.max(sum + array[i], array[i]);
+            sum = Math.max(sum + array[i], array[i]);//相当于dp的思想
             max = Math.max(sum, max);
         }
         return max;

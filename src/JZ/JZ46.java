@@ -1,6 +1,7 @@
 package JZ;
 
 import java.util.LinkedList;
+import java.util.List;
 
 /*约瑟夫环
 f[1]=0;
@@ -36,4 +37,14 @@ public class JZ46 {
         }
         return index;
     }
+
+    //用数组模拟
+    /*public int LastRemaining_Solution2(int n, int m){
+        if(n < 1 || m < 1)return -1;
+        int[] arr = new int[n];
+        int i = 0, stemp = 0, count = n;
+        while ( n  != 0){
+
+        }
+    }*/
 }

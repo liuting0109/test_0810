@@ -106,7 +106,7 @@ on a.s_id=b.s_id;
 
 16
 SELECT a.s_id,student.s_name,student.s_age,student.s_sex,a.score from
-(SELECT s_id, score FROM score WHERE c_id='01' AND score <60 GROUP BY score DESC)a
+(SELECT s_id, score FROM score WHERE c_id='01' AND score <60 order BY score DESC)a
 LEFT JOIN student on a.s_id = student.s_id;
 
 17
@@ -142,19 +142,19 @@ select a.*,@rank:=@rank+1 as rank from
 group by c_id order by sum(score) desc) a,
 (select @rank:=0) b;
 
-20
+#20
 select a.*,@rank:=@rank+1 as rank from
 (select s_id,sum(score) as '总成绩' from score
 group by s_id order by sum(score) desc) a,
 (select @rank:=0) b;
 
-21
+#21
 select t_id,t_name,c_id,avg(score) as avg_score
 from total
 group by t_id,c_id
 order by avg_score desc;
 
-22
+#22
 SELECT result.c_id, result.s_id, result.score,
 student.s_name,student.s_age,student.s_sex from
 (SELECT *, if(@pa=a.c_id, @rank:=@rank+1,@rank:=1) AS rank, @pa:=a.c_id
@@ -167,7 +167,7 @@ WHERE rank BETWEEN 2 AND 3
 GROUP BY c_id, score DESC;
 
 
-23
+#23
 select a.c_id as '课程编号',course.c_name as '课程名称',
 sum(level1) as '[100-85]人数', sum(level1)/count(1) as '[100-85]占比',
 sum(level2) as '[85-70]人数', sum(level2)/count(1) as '[85-70]占比',
@@ -221,7 +221,7 @@ FROM student GROUP BY s_name
 31
 select s_name from student where year(s_age)='1990';
 
-32
+32 desc放在avg后面，不是c_id后面
 SELECT c_id , avg(score) as'平均成绩'
 FROM score GROUP BY c_id
 ORDER BY avg(score)  desc, c_id;##ORDER BY 平均成绩或者ORDER BY avg(score) ；not ORDER BY '平均成绩'

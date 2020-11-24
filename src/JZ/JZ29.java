@@ -15,6 +15,41 @@ public class JZ29 {
             System.out.print(i+" ");
         };
     }
+    //优先队列
+    public static ArrayList<Integer> GetLeastNumbers_Solution2(int [] input, int k){
+        if (input == null || k > input.length || k== 0)
+            return new ArrayList<>();
+        Queue<Integer> maxHeap = new PriorityQueue<Integer>(Comparator.reverseOrder());
+        for (int cur: input){
+            if (maxHeap.size() < k){
+                maxHeap.add(cur);
+            }else {
+                if (cur < maxHeap.peek()){
+                    maxHeap.poll();
+                    maxHeap.add(cur);
+                }
+            }
+        }
+        return new ArrayList<>(maxHeap);
+    }
+    //堆排
+    /*public static ArrayList<Integer> GetLeastNumbers_Solution1(int [] input, int k){
+        //ArrayList<Integer>
+        if (k > input.length || k== 0)
+            return new ArrayList<>();
+
+        int[] a = new int[k];//用数组去模拟k个节点的堆结构
+        *//*for (int i = 0; i < k; i++) {
+            a[i] = input[i];
+        }*//*
+        //初始化堆中元素
+        System.arraycopy(input,0,a,0,k);//可以代替上面数组拷贝过程
+        //维护成大顶堆
+        for (int i = k/2 - 1; i >=0 ; i--) {
+
+        }
+
+    }*/
 
     //运行超时？？？？？？？？
     public static ArrayList<Integer> GetLeastNumbers_Solution(int [] input, int k) {

@@ -19,8 +19,10 @@ public class JZ62 {
         if (pRoot.left!= null){
             KkthNode(pRoot.left,k);
         }
-        if (index == k)
+        if (index == k) {
             ans = pRoot;
+           // return;//此处加return不对
+        }
         index++;
         if (pRoot.right!= null){
             KkthNode(pRoot.right,k);

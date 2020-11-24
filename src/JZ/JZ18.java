@@ -4,7 +4,8 @@ import java.util.*;
 
 public class JZ18 {
     //操作给定的二叉树，将其变换为源二叉树的镜像。
-    public void Mirror(TreeNode root) {//递归
+    //递归
+    public void Mirror(TreeNode root) {
         if (root == null)
             return;
         TreeNode temp = root.left;
@@ -13,7 +14,9 @@ public class JZ18 {
         Mirror(root.left);
         Mirror(root.right);
     }
-    public void Mirror1(TreeNode root) {//非递归,用队列
+
+    //非递归,用队列
+    public void Mirror1(TreeNode root) {
         if (root == null)
             return;
         Queue<TreeNode> nodes = new LinkedList<>();
@@ -31,18 +34,20 @@ public class JZ18 {
             }
         }
     }
-    public void Mirror3(TreeNode root) {//非递归,用栈
+
+    //非递归,用栈
+    public void Mirror3(TreeNode root) {
         if (root == null)
             return;
         Stack<TreeNode> stack = new Stack<>();
         stack.push(root);
         while (!stack.isEmpty()){
             TreeNode node = stack.pop();
-            if (node.left != null ||node.right != null){
+            //if (node.left != null ||node.right != null){//好像不用判断
                 TreeNode temp = node.left;
                 node.left = node.right;
                 node.right = temp;
-            }
+            //}
             if (node.left != null){
                 stack.push(node.left);
             }

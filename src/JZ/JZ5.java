@@ -16,12 +16,12 @@ public class JZ5 {
     }
 
     public int pop() {
-        if (stack2.isEmpty()){//if (!stack2.isEmpty())
+        if (stack2.isEmpty()){//if (!stack2.isEmpty()) 如果为空，则从stack1中取值
             while (!stack1.isEmpty()){
                 stack2.push(stack1.pop());
             }
         }
-        return stack2.pop();
+        return stack2.pop();//如果stack2不为空，直接pop，因为中间如果有新值加入的话，会影响pop的顺序
     }
 
 }

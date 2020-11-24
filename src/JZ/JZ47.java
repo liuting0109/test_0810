@@ -15,4 +15,12 @@ public class JZ47 {
         return sum;
         //return (int) (Math.pow(n, 2) + n) >> 1;
     }
+
+    //递归
+    public int Sum_Solution1(int n) {
+        int sum = n;
+        if (n > 0)
+            sum += Sum_Solution1( n -1);
+        return sum;
+    }
 }

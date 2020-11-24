@@ -56,7 +56,7 @@ public class JZ25 {
 
         return pCloneHead;
     }
-
+    // 方法二
     public RandomListNode Clone1(RandomListNode pHead) {
         if (pHead == null)
             return pHead;

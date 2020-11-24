@@ -33,6 +33,7 @@ public class JZ28 {
             }
         }
         // 判断result是否符合条件，即出现次数大于数组长度的一半
+        //强推方法
         count = 0;
         for (int i = 0; i < array.length; i++) {
             if (array[i] == res)

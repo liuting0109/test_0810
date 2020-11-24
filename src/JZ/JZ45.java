@@ -9,6 +9,13 @@ import java.util.Arrays;
 模拟上面的过程,如果牌能组成顺子就输出true，否则就输出false。为了方便起见,你可以认为大小王是0。
  */
 public class JZ45 {
+    /*
+    1、排序
+    2、计算所有相邻数字间隔总数
+    3、计算0的个数
+    4、如果2、3相等，就是顺子
+    5、如果出现对子，则不是顺子
+     */
     public boolean isContinuous(int [] numbers) {
         if (numbers.length < 5){
             return false;

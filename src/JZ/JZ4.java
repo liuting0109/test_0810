@@ -34,7 +34,7 @@ public class JZ4 {
         TreeNode root = new TreeNode(pre[0]);
         for (int i = 0; i < in.length; i++) {
             if (in[i]  == root.val){//if (in[i] == root.val)
-                root.left = reConstructBinaryTree
+                root.left = reConstructBinaryTree//左闭右开
                         (Arrays.copyOfRange(pre, 1 ,i + 1),Arrays.copyOfRange(in, 0 ,i));
                 root.right = reConstructBinaryTree
                         (Arrays.copyOfRange(pre, i + 1,pre.length),Arrays.copyOfRange(in, i + 1, in.length));
@@ -42,7 +42,6 @@ public class JZ4 {
         }
         return root;
     }
-
 
 }
 

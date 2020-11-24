@@ -12,6 +12,7 @@ public class JZ44 {
         System.out.println("+++");
         System.out.println(ReverseSentence1(s));
     }
+    //开辟存储空间
     public static String ReverseSentence(String str) {
         //System.out.println();str.trim()
         StringBuffer sb = new StringBuffer();
@@ -22,6 +23,8 @@ public class JZ44 {
         sb.append(temp[0]);
         return sb.toString();
     }
+
+    //在原数组上改动
     public static String ReverseSentence1(String str) {
         if (str.trim().equals(""))
             return str;
@@ -37,7 +40,7 @@ public class JZ44 {
                 blank = nextBlank + 1;
             }
         }
-        reverse(chars, blank, len - 1);
+        reverse(chars, blank, len - 1);//翻转自后一个单词
         /*for (int i = 0; i < str.length() / 2; i++) {
             char temp = str.charAt(i);
             str.charAt(i) = str.charAt(str.length() - i);//无法直接错误

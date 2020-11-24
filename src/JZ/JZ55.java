@@ -31,6 +31,7 @@ public class JZ55 {
         return null;
     }
 
+    //map存节点
     public ListNode EntryNodeOfLoop1(ListNode pHead) {
         if (pHead == null)
             return null;
@@ -44,4 +45,23 @@ public class JZ55 {
         }
         return null;
     }
+
+    public ListNode EntryNodeOfLoop2(ListNode pHead){
+        ListNode fast = pHead;
+        ListNode slow = pHead;
+        while (fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast){
+                slow  =pHead;
+                while (fast != slow){
+                    slow = slow.next;
+                    fast = fast.next;
+                }
+            }
+            return fast;
+        }
+        return null;
+    }
+
 }

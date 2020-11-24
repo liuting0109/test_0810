@@ -16,14 +16,15 @@ public class JZ48 {
      继续重复上述两步：1000^100 = 1100，进位值为0，跳出循环，1100为最终结果。
      */
     public int Add(int num1,int num2) {
-        while (num2 != 0){
-            int temp = num1 ^ num2;
-            num2 = (num1 & num2) << 1;
+        while (num2 != 0){//进位为0时跳出
+            int temp = num1 ^ num2;//相加和
+            num2 = (num1 & num2) << 1;//进位
             num1 = temp;
         }
         return num1;
     }
 
+    //比较好理解
     public int Add1(int num1,int num2) {
         int res = 0;
         int carry = 0;

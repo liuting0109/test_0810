@@ -1,5 +1,7 @@
 package domain.test_month10;
 
+import java.util.HashMap;
+import java.util.Objects;
 import java.util.TreeSet;
 
 /**
@@ -10,7 +12,7 @@ import java.util.TreeSet;
  */
 public class t1002 {
     public static void main(String[] args) {
-        //TreeSet
+       /* //TreeSet
         String a = "abc";
         String b = "abc";
         String c = new String("abc");
@@ -23,6 +25,7 @@ public class t1002 {
         Integer dd = new Integer(100);
         System.out.println(aa == bb);//true   >127为false
         System.out.println(aa == cc);//f
-        System.out.println(cc == dd);//f
+        System.out.println(cc == dd);//f*/
+
     }
 }

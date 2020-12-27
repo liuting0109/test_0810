@@ -1,5 +1,6 @@
 package LeetCode;
 
+import java.util.HashMap;
 import java.util.Stack;
 
 /**
@@ -9,7 +10,11 @@ import java.util.Stack;
  * @Description
  */
 public class L32 {
-    public int longestValidParentheses(String s) {
+    public static void main(String[] args) {
+
+        System.out.println(longestValidParentheses(")()())"));
+    }
+    public static int longestValidParentheses(String s) {
         int n = s.length();
         Stack<Integer> stack = new Stack<>();
         int res = 0;

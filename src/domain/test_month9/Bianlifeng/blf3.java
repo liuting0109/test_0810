@@ -33,7 +33,7 @@ items：商品价格数组
  */
 public class blf3 {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+/*        Scanner sc = new Scanner(System.in);
         int money = sc.nextInt();
         String temp = sc.next();//是next nextline错误
         //System.out.println(temp);
@@ -46,10 +46,15 @@ public class blf3 {
         //int money = Integer.valueOf(arr[0]);
         //System.out.println(money);
         System.out.println(buy(money, coins));
-        //System.out.println(str);
+        //System.out.println(str);*/
+
+        int[] coins = {1,2,5};
+        int res = buy(5, coins);
+        System.out.println(res);
 
     }
 
+    //DP[i] = DP[i] + DP[i-k] , k = 1, 2, 5;
     public static int buy(int money, int[] coins){
         int res = 0;
         int len = coins.length;
@@ -63,4 +68,6 @@ public class blf3 {
         }
         return dp[money];
     }
+
+
 }

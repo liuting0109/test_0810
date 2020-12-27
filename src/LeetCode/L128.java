@@ -41,7 +41,7 @@ public class L128 {
                 map.put(num, cur);
                 map.put(num - left, cur);/// 更新最左侧
                 map.put(num + right, cur);// 更新最右侧
-                //System.out.println(map);
+                System.out.println(map);
             }
         }
         return res;

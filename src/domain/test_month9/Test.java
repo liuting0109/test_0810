@@ -18,13 +18,11 @@ public class Test {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
     }
-    //二叉树前序遍历
+    //二叉树前序遍历 根左右
     public static void preOrder(TreeNode root){
-        System.out.println(root);
-        if (root.left != null){
+        if (root != null){
+            System.out.println(root.val);
             preOrder(root.left);
-        }
-        if (root.right != null){
             preOrder(root.right);
         }
     }
@@ -49,17 +47,12 @@ public class Test {
 
     }
 
-    //二叉树中序遍历
+    //二叉树中序遍历 左根右
     public static void inOrder(TreeNode root){
-        if (root == null)
-            return;
-
-        if (root.left != null){
-            preOrder(root.left);
-        }
-        System.out.println(root);
-        if (root.right != null){
-            preOrder(root.right);
+        if (root != null){
+            inOrder(root.left);
+            System.out.println(root.val);
+            inOrder(root.right);
         }
     }
     public static void inOrder1(TreeNode root){//非递归
@@ -72,26 +65,41 @@ public class Test {
             }
             if (!stack.isEmpty()){
                 // 弹出左节点
-                root = stack.pop();
-                System.out.println(root);
+                root = stack.pop();//叶子节点的父节点
+                System.out.println(root.val);
                 // 弹出后，指向当前节点的右节点
-                root = root.right;
+                root = root.right;//父节点的右节点，可能为null
             }
         }
     }
 
-    //二叉树后序遍历
+    //二叉树后序遍历 左右根 ???
     public static void postOrder(TreeNode root){
-        if (root == null)
-            return;
-        if (root.left != null){
-            preOrder(root.left);
+        if (root == null){
+            postOrder(root.left);
+            postOrder(root.right);
+            System.out.println(root.val);
         }
-
-        if (root.right != null){
-            preOrder(root.right);
+    }
+    //二叉树后序遍历正解
+    //https://blog.csdn.net/qq_39445165/article/details/90749343
+    public static void postOrder2(TreeNode root){
+        Stack<TreeNode> src = new Stack<TreeNode>();
+        Stack<TreeNode> res = new Stack<TreeNode>();
+        src.push(root);
+        while (!src.isEmpty()){
+            TreeNode p = src.pop();
+            res.push(p);
+            if(p.left != null){
+                src.push(p.left);
+            }
+            if(p.right != null){
+                src.push(p.right);
+            }
         }
-        System.out.println(root);
+        while (!res.isEmpty()){
+            System.out.println(res.pop().val +" ");
+        }
     }
     public static void postOrder1(TreeNode root){//非递归
         Stack<TreeNode> s1= new Stack<>();
@@ -112,6 +120,35 @@ public class Test {
         }
         while (!s2.isEmpty()){
             System.out.println(s2.pop());
+        }
+    }
+    /*非递归实现
+
+    后续遍历的非递归实现是这三种方式中最难实现的一种，因为根节点是最后才被访问的，
+    所以需要对之前的节点进行记忆。
+    即将上一次访问过的节点记录下来，当遇到没有左、右子节点的叶子节点时，
+    先判断当前叶子节点的父节点的右子节点是否被访问过，如果没有被访问过，
+    则继续遍历右节点（这个右节点是叶子节点的兄弟节点）；如果被访问过，则打印当前的叶子节点。
+
+     */
+    public void afterOrder(TreeNode root) {
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode node = root;
+        TreeNode lastVisit = root;//记录上一次遍历过的节点
+        while (!stack.empty() || node != null) {
+            while (node != null) {
+                stack.push(node);
+                node = node.left;
+            }
+            node = stack.peek();
+            if (node.right == null||node.right == lastVisit){
+                System.out.println(node.val);
+                stack.pop();
+                lastVisit = node;
+                node=null;
+            }else{
+                node = node.right;
+            }
         }
     }
 

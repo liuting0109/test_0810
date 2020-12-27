@@ -27,17 +27,5 @@ public class JZ24 {
         return res;
     }
 
-    public ArrayList<ArrayList<Integer>> FindPath1(TreeNode root,int target) {
-        if (root == null)return res;
-        list.add(root.val);
-        target -= root.val;
-        if (target == 0 && root.left == null && root.right == null)
-            //res.add(list);//要创建对象
-            res.add(new ArrayList<Integer>(list));
-        ArrayList<ArrayList<Integer>> res1 = FindPath(root.left,target);
-        ArrayList<ArrayList<Integer>> res2 = FindPath(root.right,target);
-        list.remove(list.size() - 1);
-        return res;
-    }
 
 }

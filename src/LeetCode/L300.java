@@ -9,7 +9,13 @@ import java.util.Arrays;
  * @Description
  */
 public class L300 {
-    public int lengthOfLIS(int[] nums) {
+    public static void main(String[] args) {
+        int[] arr = new int[]{10,9,2,5,3,7,101,18};
+        int res = lengthOfLIS(arr);
+        System.out.println(res);
+    }
+
+    public static int lengthOfLIS(int[] nums) {
         int len = nums.length;
         if (len < 2) return len;
         int[] dp = new int[len];
@@ -22,6 +28,7 @@ public class L300 {
             for (int j = 0; j < i; j++) {
                 if (nums[j] < nums[i]){
                     dp[i] = Math.max(dp[i], dp[j] + 1);
+                    //System.out.println(i+" -"+dp[i]);
                 }
             }
         }

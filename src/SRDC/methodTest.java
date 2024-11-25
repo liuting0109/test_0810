@@ -35,6 +35,14 @@ public class methodTest {
 
         System.out.println("f1111111111");
         f1();
+
+        boolean aa = true;
+        f22(aa);
+        System.out.println("aa="+ aa);
+    }
+
+    public static void f22(boolean aa){
+       
     }
 
     public static void f1() {

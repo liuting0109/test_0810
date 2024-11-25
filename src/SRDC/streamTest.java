@@ -16,13 +16,13 @@ import java.util.stream.Stream;
  */
 public class streamTest {
     public static void main(String[] args) {
-        List<String> strings = Arrays.asList("Hollis", "HollisChuang", "hollis", "Hello", "HelloWorld", "Hollis");
-        Stream<String> stream = Stream.of("Hollis", "HollisChuang", "hollis", "Hello", "HelloWorld", "Hollis");
-
-//        strings.stream().filter(string -> !strings.isEmpty()).forEach(System.out ::println);
-        strings.stream().filter(string -> !string.equals("Hello")).forEach(System.out::println);
-
-        List<Integer> numbers = Arrays.asList(3, 2, 2, 3, 7, 3, 5);
+//        List<String> strings = Arrays.asList("Hollis", "HollisChuang", "hollis", "Hello", "HelloWorld", "Hollis");
+//        Stream<String> stream = Stream.of("Hollis", "HollisChuang", "hollis", "Hello", "HelloWorld", "Hollis");
+//
+////        strings.stream().filter(string -> !strings.isEmpty()).forEach(System.out ::println);
+//        strings.stream().filter(string -> !string.equals("Hello")).forEach(System.out::println);
+//
+//        List<Integer> numbers = Arrays.asList(3, 2, 2, 3, 7, 3, 5);
 //        limit 返回 Stream 的前面 n 个元素
 //        numbers.stream().limit(4).forEach(System.out::println);
 
@@ -49,10 +49,10 @@ public class streamTest {
 
 
 
-        /*List<String> strings = Arrays.asList("Hollis", "HollisChuang", "hollis","Hollis666", "Hello", "HelloWorld", "Hollis");
+        List<String> strings = Arrays.asList("Hollis", "HollisChuang", "hollis","Hollis666", "Hello", "HelloWorld", "Hollis");
         strings  = strings.stream().filter(string -> string.startsWith("Hollis")).collect(Collectors.toList());
         System.out.println(strings);
-//Hollis, HollisChuang, Holli*/
+//Hollis, HollisChuang, Holli
 
         String aaa = "1234567";
         System.out.println(aaa.substring(2));

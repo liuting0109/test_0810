@@ -12,12 +12,14 @@ import java.util.Set;
  */
 public class L128 {
     public static void main(String[] args) {
-        int[] nums = {100, 4, 200, 1, 3, 2, 4};
+        int[] nums = {100, 4, 200, 1, 3, 2, 4};//4
+//        int[] nums = {0,3,7,2,5,8,4,6,0,1};//9
+
         System.out.println(longestConsecutive(nums));
     }
 
     /*
-    要求 O(n)O(n) 复杂度。
+    要求 O(n) 复杂度。
     用哈希表存储每个端点值对应连续区间的长度
     若数已在哈希表中：跳过不做处理
     若是新数加入：
@@ -65,5 +67,26 @@ public class L128 {
             ans = Math.max(ans, cur - num + 1);
         }
         return ans;
+    }
+
+    //与方法2异曲同工
+    public static int longestConsecutive3(int[] nums) {
+        int res = 0;
+        Set<Integer> set = new HashSet<>();
+        for (int num : nums) {
+            set.add(num);// 把 nums 转成哈希集合
+        }
+        for (Integer x : set) {
+            if (set.contains(x - 1)) {// 如果 x 不是序列的起点，直接跳过
+                continue;
+            }
+            int y = x + 1;
+            while (set.contains(y)) {// 不断查找下一个数是否在哈希集合中
+                y++;
+            }
+            // 循环结束后，y-1 是最后一个在哈希集合中的数,从 x 到 y-1 一共 y-x 个数
+            res = Math.max(y - x, res);
+        }
+        return res;
     }
 }

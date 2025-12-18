@@ -1,5 +1,7 @@
 package LeetCode;
 
+import java.util.Arrays;
+
 /**
  * @Author LT
  * @Date 2020/12/26 17:11
@@ -11,9 +13,9 @@ public class L283 {
 
     public static void main(String[] args) {
         //{1}  {1,0}  {0,1,0,3,12}
-        int[] nums = {1,0};
-        moveZeroes4(nums);
-        System.out.println(nums);
+        int[] nums = {0, 1, 0, 3, 12};
+        moveZeroes2(nums);
+        System.out.println(Arrays.toString(nums));
     }
 
     public static void moveZeroes(int[] nums) {
@@ -30,22 +32,8 @@ public class L283 {
         }
     }
 
-    //双指针
-    public static void moveZeroes2(int[] nums) {
-        if (nums == null) {
-            return;
-        }
-        int j = 0;
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] != 0) {
-                int temp = nums[i];
-                nums[i] = nums[j];
-                nums[j] = temp;
-                j++;
-            }
-        }
-    }
-
+    //双指针 时间复杂度：O(n)，其中 n 是 nums 的长度。
+    //空间复杂度：O(1)。
     //报错
     public static void moveZeroes3(int[] nums) {
         if (nums == null || nums.length <= 1) {
@@ -62,21 +50,16 @@ public class L283 {
         }
     }
 
-    //bingo
-    public static void moveZeroes4(int[] nums) {
-        if (nums == null) {
-            return;
-        }
-        int j = 0;
-        // case 2: [1,0]-> 输出为[0,0] 正确？？!! todo
+    public static void moveZeroes2(int[] nums) {
+        int index = 0;//非零指针
         for (int i = 0; i < nums.length; i++) {
             if (nums[i] != 0) {
-                int temp = nums[i];
-                nums[i] = 0;
-                nums[j] = temp;
-                j++;
+                nums[index] = nums[i];
+                index++;
             }
         }
+        for (int i = index; i < nums.length; i++) {
+            nums[i] = 0;
+        }
     }
-
 }

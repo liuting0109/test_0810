@@ -2,9 +2,9 @@ package LeetCode;
 
 public class L11 {
     public static void main(String[] args) {
-        // {1, 8, 6, 2, 5, 4, 8, 3, 7}   {1, 1}
-        int[] height = {1, 1};
-        System.out.println(maxArea2(height));
+//        int[] height = {1, 8, 6, 2, 5, 4, 8, 3, 7};//49
+        int[] height = {1, 1};//1
+        System.out.println(maxArea(height));
     }
 
     public static int maxArea(int[] height) {

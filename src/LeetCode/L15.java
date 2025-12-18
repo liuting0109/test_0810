@@ -6,11 +6,12 @@ import java.util.List;
 
 public class L15 {
     public static void main(String[] args) {
-        //   {-1, 0, 1, 2, -1, -4}  {0, 1, 1}   {0, 0, 0}
-        //输出 [[-1,-1,2],[-1,0,1]]  []         [[0,0,0]]
-        int[] nums = new int[]{-1, 0, 1, 2, -1, -4};
+//        int[] nums = new int[]{-1, 0, 1, 2, -1, -4}; //输出 [[-1,-1,2],[-1,0,1]]
+//        int[] nums = new int[]{0, 1, 1}; //输出[]
+//        int[] nums = new int[]{0, 0, 0};// 输出 [[0,0,0]]
+        int[] nums = new int[]{0, 0, 0, 0};// 输出 [[0,0,0]]
         List<List<Integer>> res;
-        res = threeSum1(nums);
+        res = threeSum3(nums);
         System.out.println(res);
     }
 
@@ -63,7 +64,7 @@ public class L15 {
             if (nums[i] > 0)
                 break;
             int j = i + 1, k = nums.length - 1;
-            if (i > 0 && nums[i] == nums[i - 1]) continue;
+            if (i > 0 && nums[i] == nums[i - 1]) continue;//!!不可少，否则输入[[0,0,0],[0,0,0]] 实际输出[[0,0,0],[0,0,0]]，错误
             while (j < k) {
                 //写法不对，[0,0,0]应该输出[[0,0,0]]，实际输出[]
 //                if (nums[i] + nums[j] + nums[k] == 0
@@ -79,6 +80,77 @@ public class L15 {
                     k--;
                 else
                     j++;
+            }
+        }
+        return res;
+    }
+
+    //错误
+    public static List<List<Integer>> threeSum2(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        if (nums.length < 3) return res;
+        Arrays.sort(nums);
+        int k = nums.length - 1;
+        for (int i = 0; i < nums.length - 2; i++) {
+//            if (nums[i] == nums[i + 1]) continue;//错误 否则输入[0, 0, 0, 0] 输出为空
+
+            if (i > 0 && nums[i] == nums[i - 1]) continue;
+            int j = i + 1;
+
+            if (nums[i] + nums[j] + nums[k] == 0) {
+                res.add(Arrays.asList(nums[i], nums[j], nums[k]));
+            } else if (nums[i] + nums[j] + nums[k] < 0) {
+                while (j < k && nums[j] == nums[j + 1]) {
+                    j++;
+                }
+                while (j < k && nums[k - 1] == nums[k]) {
+                    k--;
+                }
+                j++;
+                if (nums[i] + nums[j] + nums[k] == 0) {
+                    res.add(Arrays.asList(nums[i], nums[j], nums[k]));
+                }//错误写法  固定i后。j k未相遇便已退出循坏，答案错误
+            } else if (nums[i] + nums[j] + nums[k] > 0) {
+                while (j < k && nums[j] == nums[j + 1]) {
+                    j++;
+                }
+                while (j < k && nums[k - 1] == nums[k]) {
+                    k--;
+                }
+                k--;
+                if (nums[i] + nums[j] + nums[k] == 0) {
+                    res.add(Arrays.asList(nums[i], nums[j], nums[k]));
+                }
+            }
+        }
+        return res;
+    }
+
+    public static List<List<Integer>> threeSum3(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        if (nums.length < 3) return res;
+        Arrays.sort(nums);
+        int k = nums.length - 1;
+        for (int i = 0; i < nums.length - 2; i++) {
+            if (i > 0 && nums[i] == nums[i - 1]) continue;
+//            if (nums[i] == nums[i + 1]) continue;//错误 否则输入[0, 0, 0, 0] 输出为空
+            int j = i + 1;
+            while (j < k) {
+                if (nums[i] + nums[j] + nums[k] == 0) {
+                    res.add(Arrays.asList(nums[i], nums[j], nums[k]));
+                    while (j < k && nums[j] == nums[j + 1]) {
+                        j++;
+                    }
+                    while (j < k && nums[k - 1] == nums[k]) {
+                        k--;
+                    }
+                    j++;
+                    k--;
+                } else if (nums[i] + nums[j] + nums[k] < 0) {
+                    j++;
+                } else {
+                    k--;
+                }
             }
         }
         return res;

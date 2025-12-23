@@ -6,12 +6,12 @@ import java.util.List;
 
 public class L15 {
     public static void main(String[] args) {
-//        int[] nums = new int[]{-1, 0, 1, 2, -1, -4}; //输出 [[-1,-1,2],[-1,0,1]]
+        int[] nums = new int[]{-1, 0, 1, 2, -1, -4}; //输出 [[-1,-1,2],[-1,0,1]]
 //        int[] nums = new int[]{0, 1, 1}; //输出[]
 //        int[] nums = new int[]{0, 0, 0};// 输出 [[0,0,0]]
-        int[] nums = new int[]{0, 0, 0, 0};// 输出 [[0,0,0]]
+//        int[] nums = new int[]{0, 0, 0, 0};// 输出 [[0,0,0]]
         List<List<Integer>> res;
-        res = threeSum3(nums);
+        res = threeSum4(nums);
         System.out.println(res);
     }
 
@@ -149,6 +149,50 @@ public class L15 {
                 } else if (nums[i] + nums[j] + nums[k] < 0) {
                     j++;
                 } else {
+                    k--;
+                }
+            }
+        }
+        return res;
+    }
+
+    public static List<List<Integer>> threeSum4(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        //当前数组的长度为空，或者长度小于3时，直接退出
+        if (nums == null || nums.length < 3)
+            return res;
+        Arrays.sort(nums);
+        for (int i = 0; i < nums.length - 2; i++) {
+            //如果遍历的起始元素大于0，就直接退出
+            //原因，此时数组为有序的数组，最小的数都大于0了，三数之和肯定大于0
+            if (nums[i] > 0) {
+                break;
+            }
+            //去重，当起始的值等于前一个元素，那么得到的结果将会和前一次相同
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                continue;
+            }
+            int j = i + 1, k = nums.length - 1;
+            while (j < k) {
+                if (nums[i] + nums[j] + nums[k] == 0) {
+                    res.add(Arrays.asList(nums[i], nums[j], nums[k]));
+//                    while (j < k) {//死循环！错误
+//                        if (nums[j] == nums[j + 1]) j++;
+//                        if (nums[k] == nums[k - 1]) k--;
+//                    }
+//                    j++;//不要忘掉!!又忘了 次写法错误！！
+//                    k--;
+                    //在将左指针和右指针移动的时候，先对左右指针的值，进行判断
+                    //如果重复，直接跳过。
+                    //去重，因为 i 不变，当此时 j取的数的值与前一个数相同，所以不用在计算，直接跳
+                    while (j < k && nums[j] == nums[j + 1]) j++;
+                    while (j < k && nums[k] == nums[k - 1]) k--;
+                    //将 左指针右移，将右指针左移。
+                    j++;//不要忘掉!!又忘了 次写法错误！！
+                    k--;
+                } else if (nums[i] + nums[j] + nums[k] < 0) {
+                    j++;
+                } else if (nums[i] + nums[j] + nums[k] > 0) {
                     k--;
                 }
             }

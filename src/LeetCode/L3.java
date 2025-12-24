@@ -13,7 +13,7 @@ public class L3 {
     public static void main(String[] args) {
         //s = "bbbbb" : 1       "pwwkew":3
         String s = "abcabcbb";//3
-        System.out.println(lengthOfLongestSubstring2(s));
+        System.out.println(lengthOfLongestSubstring3(s));
     }
 
     /**
@@ -59,6 +59,22 @@ public class L3 {
             map.put(s.charAt(i), i);
 
             res = Math.max(res, i - left + 1);
+        }
+        return res;
+    }
+
+    public static int lengthOfLongestSubstring3(String s) {
+        int res = 0;
+        Map<Character, Integer> map = new HashMap<>();
+        for (int i = 0, start = 0; i < s.length(); i++) {
+            char temp = s.charAt(i);
+            if (map.containsKey(temp)) {
+                start = Math.max(start, map.get(temp) + 1);
+            }
+//            else {
+            map.put(temp, i);
+//            }
+            res = Math.max(res, i - start + 1);
         }
         return res;
     }

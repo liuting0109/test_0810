@@ -6,11 +6,15 @@ public class L438 {
     public static void main(String[] args) {
         String s1 = "cbaebabacd";
         String s2 = "abc";
-        List<Integer> res = findAnagrams1(s1, s2);
-
+        String s3 = "abab";
+        String s4 = "ab";
+        List<Integer> res = findAnagrams2(s1, s2);
         System.out.println(res);
+        List<Integer> res2 = findAnagrams2(s3, s4);
+        System.out.println(res2);
     }
 
+    //滑动窗口
     public static List<Integer> findAnagrams1(String s, String p) {
         char[] arrS = s.toCharArray();
         char[] arrP = p.toCharArray();
@@ -39,6 +43,29 @@ public class L438 {
         }
         return res;
     }
+
+    public static List<Integer> findAnagrams2(String s, String p) {
+        List<Integer> res = new ArrayList<>();
+        int[] needs = new int[26];
+        int[] windows = new int[26];
+        for (int i = 0; i < p.length(); i++) {
+            needs[p.charAt(i) - 'a'] += 1;
+        }
+        int left = 0, right = 0;
+        while (right < s.length()) {
+            windows[s.charAt(right) - 'a']++;
+            while (windows[s.charAt(right) - 'a'] > needs[s.charAt(right) - 'a']) {
+                windows[s.charAt(left) - 'a']--;
+                left++;
+            }
+            if (right - left + 1 == p.length()) {
+                res.add(left);
+            }
+            right++;
+        }
+        return res;
+    }
+
 
     public static List<Integer> findAnagrams(String s, String p) {
         List<Integer> res = new ArrayList<>();

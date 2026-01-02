@@ -3,13 +3,18 @@ package LeetCode;
 import java.util.HashMap;
 
 public class L560 {
+    //和为 K 的子数组
     public static void main(String[] args) {
-        int[] nums = {1, 1, 1};
-        int k = 2;
-        System.out.println(subarraySum1(nums, k));
+//        int[] nums = {1, 1, 1};
+//        int k = 2;
+//        System.out.println(subarraySum3(nums, k));//输出2
+        int[] nums2 = {1, 2, 3};
+        int k2 = 3;
+        System.out.println(subarraySum3(nums2, k2));//输出3
     }
 
-    /** 不适用滑动窗口，因为有负数
+    /**
+     * 不适用滑动窗口，因为有负数
      * 滑动窗口针对的情况是，窗口变大或者变小，窗口内的某种性质是单调变化的。
      * 比如这个题，如果 nums[i] 都是正整数的话，那么窗口范围变大时，窗口内和是递增的，窗口范围变小时，窗口内和是递减的。
      * 这种情况下是可以使用滑动窗口的。
@@ -55,6 +60,20 @@ public class L560 {
             map.put(pre, map.getOrDefault(pre, 0) + 1);
         }
         return count;
+    }
+
+    public static int subarraySum3(int[] nums, int k) {
+        int res = 0, pre = 0;
+        HashMap<Integer, Integer> map = new HashMap<>();
+        map.put(0, 1);
+        for (int i = 0; i < nums.length; i++) {
+            pre += nums[i];
+            if (map.containsKey(pre - k)) {
+                res += map.get(pre - k);
+            }
+            map.put(pre, map.getOrDefault(pre, 0) + 1);
+        }
+        return res;
     }
 
     /**

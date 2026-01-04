@@ -1,41 +1,45 @@
 package LeetCode;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 public class L56 {
+    //合并区间
+
     public static void main(String[] args) {
-        int[][] intervals = {{1,3},{2,6},{8,10},{15,18}};
+        int[][] intervals = {{1, 3}, {2, 6}, {8, 10}, {15, 18}};//输出[[1,6],[8,10],[15,18]]
         int[][] res = merge1(intervals);
         for (int i = 0; i < res.length; i++) {
             for (int j = 0; j < res[0].length; j++) {
-                System.out.print(res[i][j] +" ");
+                System.out.print(res[i][j] + " ");
             }
             System.out.println();
         }
-        System.out.println(res);
     }
 
     public static int[][] merge1(int[][] intervals) {
-        Arrays.sort(intervals,(o1, o2)-> o1[0] - o2[0]);
+        Arrays.sort(intervals, (o1, o2) -> o1[0] - o2[0]);
         int[][] res = new int[intervals.length][2];
         int index = 0;
         //for (int i = 0; i < intervals.length; i++) {//错误 没有i++
-        for (int i = 0; i < intervals.length; ){
+        for (int i = 0; i < intervals.length; ) {
             int t = intervals[i][1];
             int j = i + 1;
-            while (j < intervals.length && intervals[j][0] <= t){
+            while (j < intervals.length && intervals[j][0] <= t) {
                 t = Math.max(t, intervals[j][1]);
                 j++;
             }
-            res[index][0] =intervals[i][0];
+            res[index][0] = intervals[i][0];
             res[index][1] = t;
             index++;
             i = j;
         }
         //return res;//不对
-        return Arrays.copyOf(res,index);
+        return Arrays.copyOf(res, index);
     }
+
     public int[][] merge(int[][] intervals) {
         /*Lambda 表达式的简单例子:
          * // 1. 不需要参数,返回值为 5
@@ -49,18 +53,34 @@ public class L56 {
          * // 5. 接受一个 string 对象,并在控制台打印,不返回任何值(看起来像是返回void)
          * (String s) -> System.out.print(s)
          */
-        Arrays.sort(intervals, (o1, o2)-> o1[0] - o2[0]);//返回差值
+        Arrays.sort(intervals, (o1, o2) -> o1[0] - o2[0]);//返回差值
         int[][] res = new int[intervals.length][2];
         int index = -1;
-        for (int[] i:intervals){
+        for (int[] i : intervals) {
             // 如果结果数组是空的，或者当前区间的起始位置 > 结果数组中最后区间的终止位置，
             // 则不合并，直接将当前区间加入结果数组。
             if (index == -1 || i[0] > res[index][1])
                 res[++index] = i;
             else { // 反之将当前区间合并至结果数组的最后区间
-                res[index][1] = Math.max(res[index][1],i[1]);
+                res[index][1] = Math.max(res[index][1], i[1]);
             }
         }
-        return Arrays.copyOf(res,index+ 1);
+        return Arrays.copyOf(res, index + 1);
+    }
+
+    //时间复杂度：O(nlogn)，其中 n 是 intervals 的长度。瓶颈在排序上。
+    //空间复杂度：O(1)。排序的栈开销和返回值不计入。
+    public static int[][] merge2(int[][] intervals) {
+        Arrays.sort(intervals, (p, q) -> p[0] - q[0]);// 按照左端点从小到大排序
+        List<int[]> ans = new ArrayList<>();
+        for (int[] p : intervals) {
+            int m = ans.size();
+            if (m > 0 && p[0] <= ans.get(m - 1)[1]) {//可以合并
+                ans.get(m - 1)[1] = Math.max(ans.get(m - 1)[1], p[1]);// 更新右端点最大值
+            } else {// 不相交，无法合并
+                ans.add(p);// 新的合并区间
+            }
+        }
+        return ans.toArray(new int[ans.size()][]);
     }
 }

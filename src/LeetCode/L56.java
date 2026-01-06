@@ -37,7 +37,7 @@ public class L56 {
             i = j;
         }
         //return res;//不对
-        return Arrays.copyOf(res, index);
+        return Arrays.copyOf(res, index);//重置了返回数组的size，避免最后N个数组为0 0的情况
     }
 
     public int[][] merge(int[][] intervals) {
